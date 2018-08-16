@@ -1,0 +1,690 @@
+#include <ros/ros.h>
+   #include <visualization_msgs/Marker.h>
+   #include "sensor_msgs/Range.h"
+#include "std_msgs/Bool.h"
+//#include <planning_display.h>
+#include <moveit/move_group_interface/move_group.h>
+
+#include <message_filters/synchronizer.h>
+   #include <message_filters/sync_policies/approximate_time.h>
+
+    #include <message_filters/subscriber.h>
+#include <message_filters/time_synchronizer.h>
+   
+using namespace sensor_msgs;
+    using namespace message_filters;
+ //#include <arm_navigation_msgs/DisplayTrajectory.h>
+
+ //ros::NodeHandle n;
+int a;
+ //#include <map>
+
+float range=1 ;
+float ranged;
+//range=1000;
+float range1 ;
+float range2 ;
+int r=1;
+int i=1;
+int j=2; 
+geometry_msgs::Pose target_pose1;
+geometry_msgs::Pose target_pose2;
+geometry_msgs::Pose target_pose3;
+geometry_msgs::Pose target_pose4;
+geometry_msgs::Pose target_pose5;
+geometry_msgs::Pose target_pose6;
+geometry_msgs::Pose target_pose7;
+geometry_msgs::Pose target_pose8;
+geometry_msgs::Pose target_pose9;
+geometry_msgs::Pose target_pose10;
+geometry_msgs::Pose target_pose11;
+geometry_msgs::Pose target_pose12;
+geometry_msgs::Pose target_pose13;
+geometry_msgs::Pose target_pose14;
+geometry_msgs::Pose target_pose15;
+geometry_msgs::Pose target_pose16;
+geometry_msgs::Pose target_pose17;
+//int i=1;
+void  rangeCallback(const sensor_msgs::Range::ConstPtr& range_data)
+//void callback(const RangeConstPtr& range_data1 , const RangeConstPtr& range_data2)
+{
+range = range_data->range;
+ranged=abs(range);
+ROS_INFO("I heard: [%f]", range);
+  //range = range_data1->range;
+ //range1=range;
+//range = range_data2->range;
+// range2=range;
+moveit::planning_interface::MoveGroup group("manipulator");
+
+ //moveit::planning_interface::MoveGroup group("manipulator");
+    // ros::Rate r(1);
+if(range<0)
+{
+a=2;
+}
+ 
+
+
+//sleep(50);
+ //i=i+1;
+
+if(ranged>50)
+{
+a=1;
+}
+
+else
+{
+a=0;
+}
+if(a==1)
+{
+//sleep(1);
+//sleep(100);
+l1:switch(i)
+{
+case 1:
+
+sleep(0.8);
+target_pose1.orientation.w = 0.70714;
+
+target_pose1.orientation.x= -2.7274e-05;
+
+target_pose1.orientation.y = 0.70707;
+
+target_pose1.orientation.z = 5.5968e-06;
+
+target_pose1.position.x = 0.94004;
+
+target_pose1.position.y = 4.3703e-05;
+
+target_pose1.position.z = 1.455;
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+group.setPoseTarget(target_pose1);
+
+  ///Motion plan from current location to custom position
+
+//success = group.plan(my_plan);
+group.asyncMove();
+ sleep(.8);
+group.getCurrentJointValues ();
+//ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
+break;
+case 2:
+  //sleep(.8);
+  /*target_pose2.orientation.w = 0.70711;
+
+  target_pose2.orientation.x= 7.1913e-05;
+
+  target_pose2.orientation.y = 0.7071;
+
+  target_pose2.orientation.z = 2.8617e-06;
+
+  target_pose2.position.x = 0.94;
+
+  target_pose2.position.y = -7.8182e-05;
+
+  target_pose2.position.z = 0.99918;*/
+target_pose2.orientation.w = 0.70718;
+
+  target_pose2.orientation.x= -9.8623e-06;
+
+  target_pose2.orientation.y = 0.70703;
+
+  target_pose2.orientation.z = 1.5462e-05;//-4.0823e-05;
+
+  target_pose2.position.x = 0.98928;
+
+  target_pose2.position.y = 0.026022;
+
+  target_pose2.position.z = 1.4017;
+
+  group.setPoseTarget(target_pose2);
+ //sleep(.8);
+group.getCurrentJointValues ();
+
+  ///Motion plan from current location to custom position
+
+  //moveit::planning_interface::MoveGroup::Plan my_plan2;
+
+ //success = group.plan(my_plan);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+group.asyncMove();
+
+  //ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"":"FAILED");
+
+  /* Sleep to give RViz time to visualize the plan. */
+sleep(0.5);
+  //sleep(1.0);
+  break;
+
+case 3:
+  target_pose3.position.x = 1.0105;
+
+  target_pose3.position.y = 0.035057;
+
+  target_pose3.position.z =1.3749;
+
+  target_pose3.orientation.x=-6.647e-05 ;
+
+  target_pose3.orientation.y = .70707;
+
+  target_pose3.orientation.z = -2.6612e-05;
+
+  target_pose3.orientation.w = 0.70715 ;
+
+  group.setPoseTarget(target_pose3);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+  group.asyncMove();
+ //sleep(.8);
+group.getCurrentJointValues ();
+    //success = group.plan(my_plan);
+  //sleep(1.0);
+ sleep(0.5);
+  break;
+
+case 4:
+  target_pose4.position.x = 1.0505;
+
+  target_pose4.position.y =0.050421 ;
+
+  target_pose4.position.z =1.3234 ;
+
+  target_pose4.orientation.x= -4.5034e-05;
+
+  target_pose4.orientation.y = 0.70716;
+
+  target_pose4.orientation.z = -4.398e-05;
+
+  target_pose4.orientation.w = 0.70705;
+
+  group.setPoseTarget(target_pose4);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+  group.asyncMove();
+  // success = group.plan(my_plan); 
+  sleep(0.5);
+ 
+  break;
+
+case 5:
+  target_pose5.position.x = 1.0875;
+
+  target_pose5.position.y =0.062713 ;
+
+  target_pose5.position.z =1.2719;
+
+  target_pose5.orientation.x= -6.6919e-05;
+
+  target_pose5.orientation.y = 0.70713;
+
+  target_pose5.orientation.z = -2.3095e-06;
+
+  target_pose5.orientation.w =  0.70709;
+
+  group.setPoseTarget(target_pose5);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+  group.asyncMove();
+  // success = group.plan(my_plan); 
+  //sleep(1.0);
+ sleep(0.5);
+  break;
+
+case 6:
+  target_pose6.position.x =1.1252;
+
+  target_pose6.position.y =0.06891 ;
+
+  target_pose6.position.z =1.2087;
+
+  target_pose6.orientation.x= -6.1468e-05;
+
+  target_pose6.orientation.y = 0.70711;
+
+  target_pose6.orientation.z = 2.6618e-05;
+
+  target_pose6.orientation.w =  0.7071;
+
+  group.setPoseTarget(target_pose6);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+  group.asyncMove();
+ //  success = group.plan(my_plan); 
+  //sleep(1.0);
+ //sleep(0.5);
+  break;
+
+case 7:
+  target_pose7.position.x = 1.2178;
+
+  target_pose7.position.y =0.093716 ;
+
+  target_pose7.position.z =1.0699;
+
+  target_pose7.orientation.x=3.46e-05 ;
+
+  target_pose7.orientation.y = 0.70711;
+
+  target_pose7.orientation.z = 2.8208e-05;
+
+  target_pose7.orientation.w =  0.7071;
+
+  group.setPoseTarget(target_pose7);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+//sleep(0.5);
+}
+
+
+ group.asyncMove();
+   // success = group.plan(my_plan);
+  //sleep(1.0);
+ sleep(0.5);
+  break;
+
+case 8:
+  target_pose8.position.x =1.2695 ;
+
+  target_pose8.position.y =0.11545 ;
+
+  target_pose8.position.z =1.0064;
+
+  target_pose8.orientation.x= 3.2059e-05;
+
+  target_pose8.orientation.y = 0.70713;
+
+  target_pose8.orientation.z = 5.2586e-05;
+
+  target_pose8.orientation.w = 0.70708 ;
+
+  group.setPoseTarget(target_pose8);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+ group.asyncMove();
+ //   success = group.plan(my_plan);
+  //sleep(1.0);
+ sleep(0.5);
+  break;
+
+case 9:
+  target_pose9.position.x =1.3182 ;
+
+  target_pose9.position.y =0.13401 ;
+
+  target_pose9.position.z =0.94327;
+
+  target_pose9.orientation.x= 1.6668e-05;
+
+  target_pose9.orientation.y = 0.70707;
+
+  target_pose9.orientation.z = 1.9536e-05;
+
+  target_pose9.orientation.w =  0.70714;
+
+  group.setPoseTarget(target_pose9);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+//sleep(0.5);
+}
+
+
+  group.asyncMove();
+//    success = group.plan(my_plan);
+  //sleep(1.0);
+ sleep(0.5);
+  break;
+
+case 10:
+  target_pose10.position.x =1.3621;
+
+  target_pose10.position.y = 0.15151;
+
+  target_pose10.position.z =0.88755;
+
+  target_pose10.orientation.x= -3.9888e-05;
+
+  target_pose10.orientation.y =0.70721;
+
+  target_pose10.orientation.z = 1.6248e-05;
+
+  target_pose10.orientation.w =  0.70701;
+
+  group.setPoseTarget(target_pose10);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+ group.asyncMove();
+//    success = group.plan(my_plan);
+ // sleep(1.0);
+sleep(0.5);
+ 
+  break;
+
+case 11:
+  target_pose11.position.x = 1.4007;
+
+  target_pose11.position.y =0.15657 ;
+
+  target_pose11.position.z =0.82036;
+
+  target_pose11.orientation.x= -3.906e-05;
+
+  target_pose11.orientation.y = 0.70711;
+
+  target_pose11.orientation.z = 3.0171e-05;
+
+  target_pose11.orientation.w = 0.70711 ;
+
+  group.setPoseTarget(target_pose11);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+  group.asyncMove();
+//    success = group.plan(my_plan);
+  //sleep(1.0);
+ sleep(0.5);
+  break;
+
+case 12:
+  target_pose12.position.x =1.4369;
+
+  target_pose12.position.y = 0.15234;
+
+  target_pose12.position.z =0.74127;
+
+  target_pose12.orientation.x= -4.2897e-05;
+
+  target_pose12.orientation.y = 0.70709;
+
+  target_pose12.orientation.z = -6.3212e-06;
+
+  target_pose12.orientation.w =  0.70712;
+
+  group.setPoseTarget(target_pose12);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+  group.asyncMove();
+//  success = group.plan(my_plan);  
+ // sleep(1.0);
+ sleep(0.5);
+  break;
+
+case 13:
+  target_pose13.position.x =1.4756 ;
+
+  target_pose13.position.y = 0.15731;
+
+  target_pose13.position.z =0.67403;
+
+  target_pose13.orientation.x= -4.1473e-05;
+
+  target_pose13.orientation.y = 0.70712;
+
+  target_pose13.orientation.z =3.1461e-06 ;
+
+  target_pose13.orientation.w = 0.70709;
+
+  group.setPoseTarget(target_pose13);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+  group.asyncMove();
+//  success = group.plan(my_plan);  
+ // sleep(1.0);
+sleep(0.5);
+ 
+  break;
+
+case 14:
+  target_pose14.position.x =1.5101;
+
+  target_pose14.position.y = 0.16016;
+
+  target_pose14.position.z =0.61055;
+
+  target_pose14.orientation.x= -1.0851e-05;
+
+  target_pose14.orientation.y = 0.70718;
+
+  target_pose14.orientation.z = 2.68e-06;
+
+  target_pose14.orientation.w = 0.70704 ;
+
+  group.setPoseTarget(target_pose14);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+  group.asyncMove();
+//    success = group.plan(my_plan); 
+ // sleep(1.0);
+sleep(0.5);
+ 
+  break;
+
+case 15:
+  target_pose15.position.x = 1.5572;
+
+  target_pose15.position.y = 0.16339;
+  
+  target_pose15.position.z =0.52343;
+
+  target_pose15.orientation.x=-4.8364e-05;
+
+  target_pose15.orientation.y =0.70716;
+
+  target_pose15.orientation.z =-2.1301e-05;
+
+  target_pose15.orientation.w = 0.70705 ;
+
+ group.setPoseTarget(target_pose15);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+ //success = group.plan(my_plan);
+  group.asyncMove();
+
+   
+  //sleep(1.0);
+ sleep(0.5);
+  break;
+
+case 16:
+  target_pose16.position.x = 1.5998;
+
+  target_pose16.position.y =0.17053 ;
+
+  target_pose16.position.z =0.45197;
+
+  target_pose16.orientation.x= 5.3451e-05;
+
+  target_pose16.orientation.y = 0.70718;
+
+  target_pose16.orientation.z =1.2117e-05 ;
+
+  target_pose16.orientation.w =  0.70704;
+
+  group.setPoseTarget(target_pose16);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+  group.asyncMove();
+  //  success = group.plan(my_plan);
+  //sleep(1.0);
+sleep(0.5);
+ 
+  break;
+
+case 17:
+  target_pose17.position.x =1.611 ;
+
+  target_pose17.position.y = 0.16072;
+
+  target_pose17.position.z =0.4124;
+
+  target_pose17.orientation.x=-3.7932e-05;
+
+  target_pose17.orientation.y = 0.70701;
+
+  target_pose17.orientation.z = 2.1195e-05;
+
+  target_pose17.orientation.w =  0.70711;
+
+  group.setPoseTarget(target_pose17);
+if(range<0 || (50<=ranged<=60))
+{
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+sleep(0.5);
+}
+
+
+ group.asyncMove();
+ //   success = group.plan(my_plan);
+  //sleep(1.0);
+ 
+  break;
+sleep(0.5);
+
+  
+default:
+ group.stop();
+sleep(.5); 
+break;
+}
+
+i=i+j;
+if(i>17)
+{
+j=-2;
+i=16;
+}
+ if(i<2)
+{
+j=2;
+i=2;
+}
+}
+else 
+{
+//sleep(50);
+group.setMaxAccelerationScalingFactor(0.1);
+group.setMaxVelocityScalingFactor(0.1);
+group.stop();
+//goto l1;
+sleep(4);
+}
+
+
+
+
+ 
+ros::spin();
+   
+  
+ 
+}
+   int main( int argc, char** argv )
+   {
+    ros::init(argc, argv, "basic_shapes2");
+     ros::NodeHandle m;
+     ros::Rate r(1);
+
+ /*message_filters::Subscriber<sensor_msgs::Range> sub1(m, "range_data1", 1);
+     message_filters::Subscriber<sensor_msgs::Range> sub2(m, "range_data2", 1);
+    // TimeSynchronizer<Range, Range> sync(sub1, sub2, 10);
+typedef sync_policies::ExactTime<Range, Range> MySyncPolicy;
+ Synchronizer<MySyncPolicy> sync(MySyncPolicy(10), sub1, sub2);
+     sync.registerCallback(boost::bind(&callback, _1, _2));*/
+
+   //ROS_INFO("I heard: [%f]", range)
+ros::Subscriber sub = m.subscribe("range_data", 1000,rangeCallback);   
+//ros::Subscriber sub1 = m.subscribe("range_data1", 9600,rangeCallback);  
+ros::spin();
+//ROS_INFO("I heard: [%f]", range);
+return 0;
+//r.sleep();
+}    
+

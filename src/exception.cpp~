@@ -1,0 +1,46 @@
+#include <ros/ros.h>
+#include "std_msgs/Int32.h"
+#include <time.h>
+ros::Time start;
+int count=0;
+void printTimeDiff(const int i, const int j)
+{
+  ROS_INFO_STREAM("Callback " << i << " triggered "
+      << ros::Time::now() - start << " " << j);
+}
+
+void callback1(const std_msgs::Int32::ConstPtr& e)
+{
+  count++;
+  printTimeDiff(1, e->data);
+  ROS_INFO_STREAM("loop");
+  ROS_INFO_STREAM(e->data);
+  if (e->data != 1)
+  {
+    ROS_WARN_STREAM("throwing exception");
+    throw 10;
+  }
+}
+
+/*void callback2(const std_msgs::Int32::ConstPtr& e)
+{
+  printTimeDiff(2, e->data);
+}
+
+void callback3(const std_msgs::Int32::ConstPtr& e)
+{
+  printTimeDiff(3, e->data);
+}*/
+
+int main(int argc, char **argv)
+{
+  
+  ros::init(argc, argv, "test");
+  ros::NodeHandle n;
+  //ros::Time start = ros::Time::now();
+  
+  ros::Subscriber s1 = n.subscribe("topic1", 1, callback1);
+  //ros::Subscriber s2 = n.subscribe("topic2", 1, callback2);
+ // ros::Subscriber s3 = n.subscribe("topic3", 1, callback3);
+  ros::spin();
+}

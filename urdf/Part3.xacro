@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<robot name="table" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link
+    name="Part3">
+    <inertial>
+      <origin
+        xyz="1.5 -0.70814 1.25"
+        rpy="0 0 0" />
+      <mass
+        value="133.86" />
+      <inertia
+        ixx="83.5289649876592"
+        ixy="0.000337680008693867"
+        ixz="-0.000166551668681548"
+        iyy="198.035770651431"
+        iyz="0.000107991352591679"
+        izz="119.864599396338" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/Part3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/Part3.STL" />
+      </geometry>
+    </collision>
+  </link>
+<gazebo reference="Part3">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+
+</robot>

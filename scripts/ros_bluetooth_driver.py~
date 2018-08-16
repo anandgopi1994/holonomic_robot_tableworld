@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+#ROS python program for publishing ultrasonic sensor data to the topic range_data
+import rospy
+import serial
+import string
+import time
+import bluetooth
+from std_msgs.msg import Float32
+import signal
+import sys
+rospy.init_node('ros_bluetooth_driver',anonymous=True)
+rospy.loginfo("Staring ROS-Bluetooth Driver node")
+pub = rospy.Publisher('range_data', Float32, queue_size=9600)#created topic range_data of type float
+def publish(value_list):
+
+	global data
+	global pub
+	data = value_list[0]
+        pub.publish(data)
+	rospy.logwarn("loop1")
+        return
+def is_number(s):#used for avoiding unwanted symbols present in the integer data send from arduino
+	try:
+	    float(s)
+	    #print "real"+s
+	    return True
+	except:
+	    #print "invalid:"+s
+	    return False
+	    
+          
+def connect():#for establishing connection between arduino and ROS computer via bluetooth
+    while(True):    
+        try:
+            bluetooth_serial_handle = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+            bluetooth_serial_handle.connect(('98:D3:32:30:62:EC', 1))            
+            rospy.logwarn("connected test")
+            break;
+        except bluetooth.btcommon.BluetoothError as error:
+            bluetooth_serial_handle.close()
+	    rospy.logwarn("Unable to connect, Retrying in 10s...")            
+            time.sleep(10)
+    return bluetooth_serial_handle;
+bluetooth_serial_handle = connect()
+def quit_code(signum, frame):
+	sys.exit(1)
+signal.signal(signal.SIGINT, quit_code)
+while(True):
+    try:       
+        receive_data = bluetooth_serial_handle.recv(300)        
+	if (is_number(receive_data) == True):
+	    receive_data = map(float, receive_data.strip().split('\r\n'))
+            publish(receive_data)      #publish the data on to topic "range_data"
+    except bluetooth.btcommon.BluetoothError as error:        
+	rospy.logerr("Caught Bluetooth Error; error")
+        time.sleep(5)
+        bluetooth_serial_handle = connect()
+        pass
+rospy.logwarn("end")
+bluetooth_serial_handle.close()

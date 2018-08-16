@@ -1,0 +1,77 @@
+#include <ros/ros.h>
+#include <moveit/move_group_interface/move_group.h>
+#include <moveit/robot_state/conversions.h>
+#include <moveit_msgs/DisplayRobotState.h>
+#include <boost/math/constants/constants.hpp>
+#include <moveit/robot_model_loader/robot_model_loader.h>
+#include <moveit/robot_model/robot_model.h>
+#include <moveit/robot_state/robot_state.h>
+#include <moveit/planning_scene_monitor/planning_scene_monitor.h>
+#include <moveit/planning_scene_interface/planning_scene_interface.h>
+#include <moveit_msgs/DisplayTrajectory.h>
+#include <moveit/trajectory_processing/iterative_time_parameterization.h>
+#include "std_msgs/Float32.h"
+float range; 
+float detect;
+float sx=0.750045;
+float sy;
+float sz=1.17302;
+int i=1;
+int j=1;
+int c=1;
+int ss=1;
+int sc=1;
+float k=-0.005;
+int n=1;
+float dx;
+float cz1;
+float cz2;
+float cx1;
+float cx2;
+geometry_msgs::Pose target_pose1;
+geometry_msgs::Pose target_pose2;
+geometry_msgs::Pose target_pose3;
+geometry_msgs::Pose target_current;
+void  rangeCallback(const std_msgs::Float32::ConstPtr& range_data)
+{
+range=range_data->data;
+ROS_INFO("range= [%f]",range);
+return;
+}
+/*void  rangeCallback1(const std_msgs::Float32::ConstPtr& pir_data)
+{
+detect=pir_data->data;
+ROS_INFO("range= [%f]",detect);
+return;
+}*/
+int main(int argc, char **argv)
+{
+l1:ros::init(argc, argv, "stop");
+  ros::NodeHandle node_handle; 
+  ros::AsyncSpinner spinner(1);
+  spinner.start();
+ ros::Subscriber sub = node_handle.subscribe("range_data",800,rangeCallback);
+//ros::Subscriber sub1 = node_handle.subscribe("pir_data", 1000,rangeCallback1);
+  moveit::planning_interface::MoveGroup group("manipulator");
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005); 
+group.setPlannerId("RRTConnectkConfigDefault");
+if(range<50 )
+{
+/*sc=sc+1;
+}
+else
+{
+sc=1;
+}
+if(sc>2)
+{*/
+group.stop();
+}
+
+
+goto l1;
+  ros::spin(); 
+
+  return 0;
+}

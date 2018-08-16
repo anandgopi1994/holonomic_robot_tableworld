@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+
+
+import rospy
+
+from std_msgs.msg import Int32
+
+rospy.init_node('pub_ints')
+
+p1 = rospy.Publisher("topic1", Int32, queue_size=1)
+#p2 = rospy.Publisher("topic2", Int32, queue_size=1)
+#p3 = rospy.Publisher("topic3", Int32, queue_size=1)
+
+count = 0
+while not rospy.is_shutdown():
+    p1.publish(Int32(1))
+    #p2.publish(Int32(2))
+    rospy.sleep(0.5)
+    count += 1
+   # if (count % 5 == 0):
+    #    p3.publish(Int32(3))

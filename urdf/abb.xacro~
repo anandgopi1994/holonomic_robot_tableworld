@@ -1,0 +1,404 @@
+<?xml version="1.0" ?>
+<robot name="abb1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+ <xacro:include filename="$(find robo)/urdf/abb.gazebo" />
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find robo)/urdf/materials.xacro" />
+
+  <link
+    name="base_link">
+  
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/base_link.stl" />
+      </geometry>
+      <material
+        name="orange">
+        <!--color
+          rgba="1 0.43 0 1" /-->
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/base_link.stl" />
+      </geometry>
+	<material name="yellow">
+        
+      </material>
+    </collision>
+  </link>
+  <link
+    name="link_1">
+    <inertial>
+      <origin
+        xyz="0.0522111227261958 -0.0116596592559304 0.219021719407666"
+        rpy="0 0 0" />
+      <mass
+        value="39.9365015830033" />
+      <inertia
+        ixx="0.845334202122632"
+        ixy="0.0656186482879557"
+        ixz="-0.269070826240378"
+        iyy="1.36801166631736"
+        iyz="0.0943348935337759"
+        izz="0.962751950501805" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_1.stl" />
+      </geometry>
+      <material
+        name="orange">
+        
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_1.stl" />
+      </geometry>
+	<material name="yellow">
+        <color rgba="0 1 1 1"/>
+      </material>
+    </collision>
+  </link>
+  <joint
+    name="joint_1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.1245"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.1416"
+      upper="3.1416"
+      effort="0"
+      velocity="2.61799" />
+  </joint>
+  <link
+    name="link_2">
+    <inertial>
+      <origin
+        xyz="0.000218366541555021 -0.0762440117942891 0.30404282746187"
+        rpy="0 0 0" />
+      <mass
+        value="10.4210342700593" />
+      <inertia
+        ixx="0.651350719661503"
+        ixy="-4.9045871565509E-05"
+        ixz="-0.000741702661954668"
+        iyy="0.658366369794218"
+        iyz="-0.0344138066945076"
+        izz="0.02601029943381" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_2.stl" />
+      </geometry>
+      <material
+        name="orange">
+        
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_2.stl" />
+      </geometry>
+	<material name="yellow">
+        <color rgba="0 1 1 1"/>
+      </material>
+    </collision>
+  </link>
+  <joint
+    name="joint_2"
+    type="revolute">
+    <origin
+      xyz="0.15 -0.10799 0.362"
+      rpy="0 0 0" />
+    <parent
+      link="link_1" />
+    <child
+      link="link_2" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.5708"
+      upper="2.0944"
+      effort="0"
+      velocity="2.79253" />
+  </joint>
+  <link
+    name="link_3">
+    <inertial>
+      <origin
+        xyz="0.0209230499475786 0.121885416238425 -0.0133256639913693"
+        rpy="0 0 0" />
+      <mass
+        value="16.3599610651843" />
+      <inertia
+        ixx="0.115413569955194"
+        ixy="0.00803192288230763"
+        ixz="-0.00276751762070667"
+        iyy="0.260341798739321"
+        iyz="0.00866866627443184"
+        izz="0.262789183701365" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_3.stl" />
+      </geometry>
+      <material
+        name="orange">
+        
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_3.stl" />
+      </geometry>
+	<material name="yellow">
+        <color rgba="0 1 1 1"/>
+      </material>
+    </collision>
+  </link>
+  <joint
+    name="joint_3"
+    type="revolute">
+    <origin
+      xyz="0 0 0.7"
+      rpy="0 0 0" />
+    <parent
+      link="link_2" />
+    <child
+      link="link_3" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-4.27606"
+      upper="1.13446"
+      effort="0"
+      velocity="2.96706" />
+  </joint>
+  <link
+    name="link_4">
+    <inertial>
+      <origin
+        xyz="0.164615697564212 -0.00066290728162951 0.000168948405044"
+        rpy="0 0 0" />
+      <mass
+        value="2.88729311571638" />
+      <inertia
+        ixx="0.00476590823118597"
+        ixy="0.000353127627668311"
+        ixz="-4.36614897682466E-05"
+        iyy="0.0264714455176791"
+        iyz="2.57933713310819E-06"
+        izz="0.0273801531204047" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_4.stl" />
+      </geometry>
+      <material
+        name="orange">
+        
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_4.stl" />
+      </geometry>
+	<material name="yellow">
+        <color rgba="0 1 1 1"/>
+      </material>
+    </collision>
+  </link>
+  <joint
+    name="joint_4"
+    type="revolute">
+    <origin
+      xyz="0.314 0.10349 0"
+      rpy="0 0 0" />
+    <parent
+      link="link_3" />
+    <child
+      link="link_4" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.49066"
+      upper="3.49066"
+      effort="0"
+      velocity="5.58505" />
+  </joint>
+  <link
+    name="link_5">
+    <inertial>
+      <origin
+        xyz="4.93388840894227E-09 -0.000500001844170638 1.08074458271545E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.181521917125418" />
+      <inertia
+        ixx="0.000118375926808713"
+        ixy="-1.96653502069715E-11"
+        ixz="-1.22857728010081E-11"
+        iyy="0.000150255559165527"
+        iyz="1.71186451907193E-11"
+        izz="9.65019050918224E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_5.stl" />
+      </geometry>
+      <material
+        name="orange">
+        
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_5.stl" />
+      </geometry>
+	<material name="yellow">
+        <color rgba="0 1 1 1"/>
+      </material>
+    </collision>
+  </link>
+  <joint
+    name="joint_5"
+    type="revolute">
+    <origin
+      xyz="0.286 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="link_4" />
+    <child
+      link="link_5" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.00713"
+      upper="2.00713"
+      effort="0"
+      velocity="6.98132" />
+  </joint>
+  <link
+    name="link_6">
+    <inertial>
+      <origin
+        xyz="0.0471419669465906 -0.000500000055606831 -0.000179501004146321"
+        rpy="0 0 0" />
+      <mass
+        value="0.0321510229132749" />
+      <inertia
+        ixx="6.21758264720005E-06"
+        ixy="1.49554124034951E-14"
+        ixz="7.35704787719023E-08"
+        iyy="1.42703263694756E-05"
+        iyz="6.69990083641332E-13"
+        izz="1.43864638217809E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_6.stl" />
+      </geometry>
+      <material
+        name="orange">
+        
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo/meshes/link_6.stl" />
+      </geometry>
+	<material name="yellow">
+        <color rgba="0 1 1 1"/>
+      </material>
+    </collision>
+  </link>
+  <joint
+    name="joint_6"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="link_5" />
+    <child
+      link="link_6" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6.98132"
+      upper="6.98132"
+      effort="0"
+      velocity="8.02851" />
+</joint>
+<link name="tool0"/>
+<joint name="joint_6-tool0" type="fixed">
+    <parent link="link_6"/>
+    <child link="tool0"/>
+    <origin rpy="0 1.57079632679 0" xyz="0 0 0"/>
+  </joint>
+</robot>

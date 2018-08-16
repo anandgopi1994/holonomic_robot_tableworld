@@ -1,0 +1,278 @@
+#include <ros/ros.h>
+#include <moveit/move_group_interface/move_group.h>
+#include "std_msgs/Float32.h"
+#include "sensor_msgs/Range.h"
+float range; 
+float detect;
+int i=1;
+int j=1;
+int c=1;
+int n=1;
+float dx;
+float cz1;
+float cz2;
+float cx1;
+float cx2;
+geometry_msgs::Pose target_pose1;
+geometry_msgs::Pose target_pose2;
+geometry_msgs::Pose target_pose3;
+geometry_msgs::Pose target_current;
+void  rangeCallback1(const std_msgs::Float32::ConstPtr& pir_data)
+{
+	detect=pir_data->data;
+	ROS_INFO("detect= [%f]",detect);
+	return;
+}
+void  rangeCallback2(const std_msgs::Float32::ConstPtr& range_data)
+{
+	range=range_data->data;
+	ROS_INFO("I heard range: [%f]", range);
+}
+int main(int argc, char **argv)
+{
+	l1:ros::init(argc, argv, "move_group_interface_tutorial");
+  	ros::NodeHandle node_handle; 
+  	ros::AsyncSpinner spinner(1);
+  	spinner.start();
+  	ros::Subscriber sub1 = node_handle.subscribe("pir_data", 1000,rangeCallback1);
+  	ros::Subscriber sub2 = node_handle.subscribe("range_data", 1000,rangeCallback2); 
+  	moveit::planning_interface::MoveGroup group("manipulator");
+  	group.setPlannerId("RRTConnectkConfigDefault");
+        group.setMaxAccelerationScalingFactor(0.05);
+	group.setMaxVelocityScalingFactor(0.05); 
+
+	if(i<=1)
+	{
+		if(detect==1)
+		{
+			group.setMaxAccelerationScalingFactor(0.009);
+			group.setMaxVelocityScalingFactor(0.009); 
+			if(range<50)
+			{
+				group.stop();
+				goto l1;
+			}
+		}
+		else
+		{
+			group.setMaxAccelerationScalingFactor(0.05);
+			group.setMaxVelocityScalingFactor(0.05); 
+		}
+		target_pose1.orientation.w = 0.277534;
+
+		target_pose1.orientation.x= 0.0373867;
+
+		target_pose1.orientation.y = 0.959272;
+
+		target_pose1.orientation.z = -0.0370748;
+
+		target_pose1.position.x = 0.78422;
+
+		target_pose1.position.y = -0.142678;
+
+		target_pose1.position.z = 0.948713;
+ 		group.setPoseTarget(target_pose1);
+
+  		group.asyncMove();
+
+		if(detect==0)
+		{
+			sleep(4.2);
+		}
+		else 
+		{
+			if(range>=50)
+			{
+				sleep(15);
+			}
+		}
+		target_current=group.getCurrentPose().pose;
+		cz1=target_pose1.position.z;
+		cz2=target_current.position.z;
+		cz1=floorf(cz1*100)/100;
+		cz2=floorf(cz2*100)/100;
+		cx1=target_pose1.position.x;
+		cx2=target_current.position.x;
+		cx1=floorf(cx1*100)/100;
+		cx2=floorf(cx2*100)/100;
+		if(cz1==cz2 && cx1==cx2)
+		{
+			i=i+1;
+			j=1;
+		}
+		else
+		{
+			i=1;
+			c=c+1;
+			if(c==8)
+			{
+				i=i+1;
+				j=1;
+				c=1;
+			}
+		}
+	}
+	else if(i==2)
+	{
+		if(detect==1)
+		{
+			if(range<90)
+			{
+				group.stop();
+				goto l1;
+			}
+			group.setMaxAccelerationScalingFactor(0.009);
+			group.setMaxVelocityScalingFactor(0.009); 
+		}
+		else
+		{
+			group.setMaxAccelerationScalingFactor(0.05);
+			group.setMaxVelocityScalingFactor(0.05); 
+		}
+ 		target_pose2.orientation.w = 0.277721;
+
+  		target_pose2.orientation.x= 0.037307;
+
+  		target_pose2.orientation.y = 0.959219;
+
+  		target_pose2.orientation.z = -0.0371322;
+
+  		target_pose2.position.x = 0.697183;
+
+  		target_pose2.position.y = -0.318915;
+
+  		target_pose2.position.z = 1.06903;
+ 
+ 
+ 	 	group.setPoseTarget(target_pose2);
+  
+  		group.asyncMove();
+  
+		if(detect==0)
+		{
+			sleep(4.2);
+		}
+		else
+		{
+			if(range>=50)
+			{
+				sleep(15);
+			}
+		}
+		target_current=group.getCurrentPose().pose;
+		cz1=target_pose2.position.z;
+		cz2=target_current.position.z;
+		cz1=floorf(cz1*100)/100;
+		cz2=floorf(cz2*100)/100;
+		cx1=target_pose2.position.x;
+		cx2=target_current.position.x;
+		cx1=floorf(cx1*100)/100;
+		cx2=floorf(cx2*100)/100;
+		if(cz1==cz2 && cx1==cx2)
+		{
+			if(j==1)
+			{
+				i=3;
+			}
+			else
+			{
+				i=1;
+			}
+		}
+		else
+		{
+			i=2;
+			c=c+1;
+			if(c==8)
+			{
+				if(j==1)
+				{
+					i=3;
+				}
+				else
+				{
+					i=1;
+				}
+				c=1;
+			}
+		}
+	}
+
+	else
+	{
+		if(detect==1)
+		{
+			if(range<90)
+			{
+				group.stop();
+				goto l1;
+			}
+			group.setMaxAccelerationScalingFactor(0.009);
+			group.setMaxVelocityScalingFactor(0.009); 
+
+		}
+		else
+		{
+			group.setMaxAccelerationScalingFactor(0.05);
+			group.setMaxVelocityScalingFactor(0.05); 
+		}
+		target_pose3.orientation.w = 0.277714;
+
+  		target_pose3.orientation.x= 0.0373732;
+
+  		target_pose3.orientation.y = 0.959219;
+
+  		target_pose3.orientation.z = -0.0371142;
+
+  		target_pose3.position.x = 0.774575;
+
+  		target_pose3.position.y = -0.444734;
+
+  		target_pose3.position.z = 0.93503;
+ 
+  		group.setPoseTarget(target_pose3);
+  
+  		group.asyncMove();
+  
+		if(detect==0)
+		{
+			sleep(4.2);
+		}
+		else
+		{
+			if(range>=50)
+			{
+				sleep(15);
+			}
+		}
+		target_current=group.getCurrentPose().pose;
+		cz1=target_pose3.position.z;
+		cz2=target_current.position.z;
+		cz1=floorf(cz1*100)/100;
+		cz2=floorf(cz2*100)/100;
+		cx1=target_pose3.position.x;
+		cx2=target_current.position.x;
+		cx1=floorf(cx1*100)/100;
+		cx2=floorf(cx2*100)/100;
+		if(cz1==cz2 && cx1==cx2)
+		{
+			i=i-1;
+			j=2;
+		}
+		else
+		{
+			i=3;
+			c=c+1;
+			if(c==8)
+			{
+				i=i-1;
+				j=2;
+				c=1;
+			}
+		}
+	}
+
+	goto l1;
+  	ros::spin(); 
+  	return 0;
+}

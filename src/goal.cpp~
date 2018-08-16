@@ -1,0 +1,234 @@
+#include <ros/ros.h>
+#include <moveit/move_group_interface/move_group.h>
+#include <moveit/robot_state/conversions.h>
+#include <moveit_msgs/DisplayRobotState.h>
+#include <boost/math/constants/constants.hpp>
+#include <moveit/robot_model_loader/robot_model_loader.h>
+#include <moveit/robot_model/robot_model.h>
+#include <moveit/robot_state/robot_state.h>
+#include <moveit/planning_scene_monitor/planning_scene_monitor.h>
+#include <moveit/planning_scene_interface/planning_scene_interface.h>
+#include <geometric_shapes/solid_primitive_dims.h>
+#include <mapping_msgs/CollisionObject.h>
+#include <geometric_shapes_msgs/Shape.h>
+#include <stdio.h>
+#include "sensor_msgs/Range.h"
+#include "std_msgs/Float32.h"
+float range; 
+ float sx=0.750045;
+float sy;
+float sz=1.17302;
+int i=1;
+int c=1;
+float k=-0.005;
+int n=1;
+float dx;
+float cz1;
+float cz2;
+//moveit::planning_interface::MoveGroup group("manipulator");
+//group.setPlannerId("RRTConnectkConfigDefault");
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+//geometry_msgs::Pose target_pose[100];
+//geometry_msgs::Pose target_pose1;
+geometry_msgs::Pose target_pose1;
+geometry_msgs::Pose target_pose2;
+//geometry_msgs::Pose target_current;
+//void rangeCallback(const sensor_msgs::Range::ConstPtr& range_data)
+void  rangeCallback(const std_msgs::Float32::ConstPtr& pir_data)
+{
+//range = range_data->range;
+range=pir_data->data;
+//sleep(0.6);
+ROS_INFO("I heard: [%f]", range);
+//sleep(1.2);
+moveit::planning_interface::MoveGroup group("manipulator");
+//group.setPlannerId("RRTConnectkConfigDefault");
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+//ROS_INFO_STREAM("reached1 "); 
+
+ 
+ 
+if(i<=1)
+{
+if(range==1)
+{
+group.setMaxAccelerationScalingFactor(0.005);
+group.setMaxVelocityScalingFactor(0.005); 
+//group.stop();
+}
+else
+{
+group.setMaxAccelerationScalingFactor(0.05);
+group.setMaxVelocityScalingFactor(0.05); 
+}
+/*if(range==1)
+{
+group.setMaxAccelerationScalingFactor(0.005);
+group.setMaxVelocityScalingFactor(0.005); 
+//group.stop();
+}
+else
+{
+group.setMaxAccelerationScalingFactor(0.05);
+group.setMaxVelocityScalingFactor(0.05); 
+}*/
+target_pose1.orientation.w = 0.360304;
+
+target_pose1.orientation.x= 0.000111297;
+
+target_pose1.orientation.y = 0.932835;
+
+target_pose1.orientation.z = -0.000272719;
+
+target_pose1.position.x = 0.749898;
+
+target_pose1.position.y = -0.00447211;
+
+target_pose1.position.z = 1.18652;
+ group.setPoseTarget(target_pose1);
+group.asyncMove();
+if(range==0)
+{
+sleep(1.5);
+}
+else
+{
+sleep(3);
+}
+geometry_msgs::Pose target_current=group.getCurrentPose().pose;
+cz1=target_pose1.position.z;
+cz2=target_current.position.z;
+cz1=floorf(cz1*100)/100;
+cz2=floorf(cz2*100)/100;
+ROS_INFO("cz1 and cz2=[%f] [%f]",cz1,cz2);
+if(cz1==cz2)
+{
+i=i+1;
+}
+}
+else
+{
+if(range==1)
+{
+group.setMaxAccelerationScalingFactor(0.005);
+group.setMaxVelocityScalingFactor(0.005); 
+//group.stop();
+}
+else
+{
+group.setMaxAccelerationScalingFactor(0.05);
+group.setMaxVelocityScalingFactor(0.05); 
+}
+ /* target_pose2.orientation.w = 0.70711;
+
+  target_pose2.orientation.x= -3.81206e-05;
+
+  target_pose2.orientation.y = 0.707104;
+
+  target_pose2.orientation.z = -1.21234e-05;//-4.0823e-05;
+
+  target_pose2.position.x = 0.866896;
+
+  target_pose2.position.y = -0.00445902;
+
+  target_pose2.position.z = 0.920556;*/
+ /* if(range==1)
+{
+group.setMaxAccelerationScalingFactor(0.005);
+group.setMaxVelocityScalingFactor(0.005); 
+//group.stop();
+}
+else
+{
+group.setMaxAccelerationScalingFactor(0.05);
+group.setMaxVelocityScalingFactor(0.05); 
+}*/
+
+  target_pose2.orientation.w = 0.413667;
+
+  target_pose2.orientation.x= -2.13222e-05;
+
+  target_pose2.orientation.y = 0.910428;
+
+  target_pose2.orientation.z = -5.46329e-05;//-4.0823e-05;
+
+  target_pose2.position.x = 0.758823;
+
+  target_pose2.position.y = -0.00456134;
+
+  target_pose2.position.z = 0.978509;
+ 
+  group.setPoseTarget(target_pose2);
+  group.asyncMove();
+if(range==0)
+{
+sleep(1.5);
+}
+else
+{
+sleep(3);
+}
+geometry_msgs::Pose target_current=group.getCurrentPose().pose;
+cz1=target_pose2.position.z;
+cz2=target_current.position.z;
+cz1=floorf(cz1*1000)/1000;
+cz2=floorf(cz2*1000)/1000;
+if(cz1==cz2)
+{
+i=1;
+}
+//if(target_pose2==target_current)
+//{
+
+//i=1;
+//}
+
+
+/*target_pose2.orientation.w = 0.413683;
+
+  target_pose2.orientation.x= 4.52964e-05;
+
+  target_pose2.orientation.y = 0.910421;
+
+  target_pose2.orientation.z = -2.19914e-05;//-4.0823e-05;
+
+  target_pose2.position.x = 0.734917;
+
+  target_pose2.position.y = -0.00457154;
+
+  target_pose2.position.z = 0.807377;
+ 
+  group.setPoseTarget(target_pose2);
+ //ROS_INFO("reached3 [%f]",k); 
+ /*target_pose[i].position.x =sx-dx;
+ sx=sx-dx;
+ //ROS_INFO("sx [%f]",sx);
+ target_pose[i].position.y =-0.00449587;
+ target_pose[i].position.z =sz+k;
+ sz=sz+k;
+ //ROS_INFO("sz [%f]",sz);
+ target_pose[i].orientation.x= 2.22693e-05;
+ target_pose[i].orientation.y = 0.843563;
+ target_pose[i].orientation.z =4.03589e-05;
+ target_pose[i].orientation.w =  0.53703;
+ group.setPoseTarget(target_pose[i]);
+ group.asyncMove();
+ ROS_INFO("printing while executing");
+//group.stop();
+ i=i+c;
+ sleep(1.2);*/
+
+}
+ros::spin();
+}
+int main( int argc, char** argv )
+   {
+    ros::init(argc, argv, "goal");
+    ros::NodeHandle m;
+    ros::Rate r(1);
+    ros::Subscriber sub = m.subscribe("pir_data",800,rangeCallback);    
+    ros::spin();
+    return 0;
+}  

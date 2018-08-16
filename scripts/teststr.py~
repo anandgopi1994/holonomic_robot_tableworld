@@ -1,0 +1,9 @@
+#!/usr/bin/python
+
+str = "010000000"#this isstringexample....wow!!!00000002c0
+c=map(float,str.strip().split('\r\n'))
+d=0.01
+for item in c
+e=c[0]
+a=e+d
+print a

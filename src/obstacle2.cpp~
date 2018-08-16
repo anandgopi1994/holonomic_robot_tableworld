@@ -1,0 +1,1637 @@
+#include <ros/ros.h>
+#include <moveit/move_group_interface/move_group.h>
+#include <moveit/robot_state/conversions.h>
+#include <moveit_msgs/DisplayRobotState.h>
+#include <boost/math/constants/constants.hpp>
+#include <moveit/robot_model_loader/robot_model_loader.h>
+#include <moveit/robot_model/robot_model.h>
+#include <moveit/robot_state/robot_state.h>
+#include <moveit/planning_scene_monitor/planning_scene_monitor.h>
+#include <moveit/planning_scene_interface/planning_scene_interface.h>
+#include <geometric_shapes/solid_primitive_dims.h>
+#include <mapping_msgs/CollisionObject.h>
+#include <geometric_shapes_msgs/Shape.h>
+#include <stdio.h>
+#include "std_msgs/Float32.h"
+float detect; 
+ float sx;
+float sy;
+float sz;
+  float i=0;
+int j=1;
+int c=1;
+int a=0;
+void  rangeCallback(const std_msgs::Float32::ConstPtr& pir_data)
+{
+  //ros::init(argc, argv, "move_group_interface_demo", ros::init_options::AnonymousName);
+
+detect=pir_data->data;
+//sleep(5);
+  //spinner.start();
+ ROS_INFO("I heard: [%f]", detect);
+  moveit::planning_interface::MoveGroup group("manipulator");
+//moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
+ // ROS_INFO("Reference frame: [%s]",group.getPlanningFrame().c_str());
+//std::vector<geometry_msgs::Pose> waypoints;
+
+ geometry_msgs::Pose target_pose1;
+ geometry_msgs::Pose target_pose2;
+geometry_msgs::Pose target_pose3;
+geometry_msgs::Pose target_pose4;
+ geometry_msgs::Pose target_pose5;
+geometry_msgs::Pose target_pose6;
+geometry_msgs::Pose target_pose7;
+ geometry_msgs::Pose target_pose8;
+geometry_msgs::Pose target_pose9;
+geometry_msgs::Pose target_pose10;
+ geometry_msgs::Pose target_pose11;
+ geometry_msgs::Pose target_pose12;
+geometry_msgs::Pose target_pose13;
+geometry_msgs::Pose target_pose14;
+ geometry_msgs::Pose target_pose15;
+geometry_msgs::Pose target_pose16;
+geometry_msgs::Pose target_pose17;
+ geometry_msgs::Pose target_pose18;
+geometry_msgs::Pose target_pose19;
+ geometry_msgs::Pose target_pose20;
+ geometry_msgs::Pose target_pose21;
+geometry_msgs::Pose target_pose22;
+geometry_msgs::Pose target_pose23;
+ geometry_msgs::Pose target_pose24;
+geometry_msgs::Pose target_pose25;
+geometry_msgs::Pose target_pose26;
+ geometry_msgs::Pose target_pose27;
+ geometry_msgs::Pose target_pose28;
+geometry_msgs::Pose target_pose29;
+geometry_msgs::Pose target_pose30;
+ geometry_msgs::Pose target_pose31;
+geometry_msgs::Pose target_pose32;
+geometry_msgs::Pose target_pose33;
+ geometry_msgs::Pose target_pose34;
+geometry_msgs::Pose target_pose35;
+ geometry_msgs::Pose target_pose36;
+ geometry_msgs::Pose target_pose37;
+geometry_msgs::Pose target_pose38;
+geometry_msgs::Pose target_pose39;
+ geometry_msgs::Pose target_pose40;
+geometry_msgs::Pose target_pose41;
+geometry_msgs::Pose target_pose42;
+ geometry_msgs::Pose target_pose43;
+geometry_msgs::Pose target_pose44;
+ geometry_msgs::Pose target_pose45;
+ geometry_msgs::Pose target_pose46;
+geometry_msgs::Pose target_pose47;
+geometry_msgs::Pose target_pose48;
+ geometry_msgs::Pose target_pose49;
+geometry_msgs::Pose target_pose50;
+geometry_msgs::Pose target_pose51;
+ geometry_msgs::Pose target_pose52;
+ geometry_msgs::Pose target_pose53;
+geometry_msgs::Pose target_pose54;
+geometry_msgs::Pose target_pose55;
+ geometry_msgs::Pose target_pose56;
+geometry_msgs::Pose target_pose57;
+geometry_msgs::Pose target_pose58;
+ geometry_msgs::Pose target_pose59;
+group.setPlannerId("RRTConnectkConfigDefault");
+    //group.setPlannerId("KPIECEkConfigDefault");
+    group.setMaxAccelerationScalingFactor(0.05);
+group.setMaxVelocityScalingFactor(0.05);
+ROS_INFO_STREAM("reached1 "); 
+if(detect==1)
+{
+a=1;
+}
+else
+{
+a=0;
+}
+
+if(a==0)
+{
+switch(c)
+{
+case(1):
+ROS_INFO_STREAM("reached2 "); 
+//sleep(0.8);
+ //ROS_INFO_STREAM("Jacobian: " << jacobian);
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+
+  target_pose1.position.x =0.750045 ;
+
+  target_pose1.position.y =-0.00449587;
+
+  target_pose1.position.z =1.17302;
+
+  target_pose1.orientation.x= 2.22693e-05;
+
+  target_pose1.orientation.y = 0.843563;
+
+  target_pose1.orientation.z =4.03589e-05;
+
+  target_pose1.orientation.w =  0.53703;
+
+
+  group.setPoseTarget(target_pose1);
+ i=0.005;
+ //cout<<"\n\nCurrent joint names and values\n\n";
+// joint_values(group.getJoints(),group.getCurrentJointValues());
+
+sleep(1.8);  
+group.asyncMove();
+/*std::vector<double> joints (group.getCurrentJointValues());
+//std::cout << "Joints" <joints[i] << std::endl;
+for (unsigned i = 0; i < joints.size(); ++i)
+{
+    std::cout << "J" << i << ": " << joints[i] << std::endl;
+}
+
+//Moving single joint*/
+
+//std::vector<double> group_variable_values;
+//group.getCurrentState()->copyJointGroupPositions(group.getCurrentState()->getRobotModel()->getJointModelGroup(group.getName()), group_variable_values);
+//group_variable_values[5] = -1.0;//giving joint 2 the required angle to move
+//group.setJointValueTarget(group_variable_values);
+//group.asyncMove();
+
+/* Sleep to give Rviz time to visualize the plan. */
+//sleep(5.0);
+  //group.move();
+sleep(3);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(2):
+
+  target_pose2.position.x =0.750045+i;
+  sx=0.750045+i;
+
+  target_pose2.position.y =-0.00449587;
+
+ target_pose2.position.z =sz-i;
+sz=sz-i;
+
+
+  target_pose2.position.z =1.17302-i;
+  sz=1.17302-i;
+
+  target_pose2.orientation.x= 2.22693e-05;
+
+  target_pose2.orientation.y = 0.843563;
+
+  target_pose2.orientation.z =4.03589e-05;
+
+  target_pose2.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose2);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(3):
+
+
+  target_pose3.position.x =sx+i;
+  sx=sx+i;
+
+  target_pose3.position.y =-0.00449587;
+
+
+  target_pose3.position.z =sz-i;
+   sz=sz-i;
+
+  target_pose3.orientation.x= 2.22693e-05;
+
+  target_pose3.orientation.y = 0.843563;
+
+  target_pose3.orientation.z =4.03589e-05;
+
+  target_pose3.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose3);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.05);
+case(4):
+
+  target_pose4.position.x =sx+i ;
+sx=sx+i;
+
+  target_pose4.position.y =-0.00449587;
+
+  target_pose4.position.z =sz-i;
+sz=sz-i;
+
+  target_pose4.orientation.x= 2.22693e-05;
+
+  target_pose4.orientation.y = 0.843563;
+
+  target_pose4.orientation.z =4.03589e-05;
+
+  target_pose4.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose4);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(5):
+
+  target_pose5.position.x =sx+i;
+sx=sx+i;
+
+  target_pose5.position.y =-0.00449587;
+
+  target_pose5.position.z =sz-i;
+sz=sz-i;
+
+  target_pose5.orientation.x= 2.22693e-05;
+
+  target_pose5.orientation.y = 0.843563;
+
+  target_pose5.orientation.z =4.03589e-05;
+
+  target_pose5.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose5);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+case(6):
+
+  target_pose6.position.x =sx+i;
+sx=sx+i;
+
+  target_pose6.position.y =-0.00449587;
+
+  target_pose6.position.z =sz-i;
+sz=sz-i;
+
+  target_pose6.orientation.x= 2.22693e-05;
+
+  target_pose6.orientation.y = 0.843563;
+
+  target_pose6.orientation.z =4.03589e-05;
+
+  target_pose6.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose6);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(7):
+  target_pose7.position.x =sx+i;
+sx=sx+i;
+  target_pose7.position.y =-0.00449587;
+
+  target_pose7.position.z =sz-i;
+sz=sz-i;
+
+  target_pose7.orientation.x= 2.22693e-05;
+
+  target_pose7.orientation.y = 0.843563;
+
+  target_pose7.orientation.z =4.03589e-05;
+
+  target_pose7.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose7);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(8):
+  target_pose8.position.x =sx ;
+
+  target_pose8.position.y =-0.00449587;
+
+  target_pose8.position.z =sz-i;
+sz=sz-i;
+
+  target_pose8.orientation.x= 2.22693e-05;
+
+  target_pose8.orientation.y = 0.843563;
+
+  target_pose8.orientation.z =4.03589e-05;
+
+  target_pose8.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose8);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+case(9):
+  target_pose9.position.x =sx;
+
+  target_pose9.position.y =-0.00449587;
+
+  target_pose9.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose9.orientation.x= 2.22693e-05;
+
+  target_pose9.orientation.y = 0.843563;
+
+  target_pose9.orientation.z =4.03589e-05;
+
+  target_pose9.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose9);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(10):
+  target_pose10.position.x =sx ;
+
+  target_pose10.position.y =-0.00449587;
+
+  target_pose10.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose10.orientation.x= 2.22693e-05;
+
+  target_pose10.orientation.y = 0.843563;
+
+  target_pose10.orientation.z =4.03589e-05;
+
+  target_pose10.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose10);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(11):
+  target_pose11.position.x =sx ;
+
+  target_pose11.position.y =-0.00449587;
+
+  target_pose11.position.z =sz-i;
+sz=sz-i;
+
+  target_pose11.orientation.x= 2.22693e-05;
+
+  target_pose11.orientation.y = 0.843563;
+
+  target_pose11.orientation.z =4.03589e-05;
+
+  target_pose11.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose11);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+case(12):
+  target_pose12.position.x =sx;
+
+  target_pose12.position.y =-0.00449587;
+
+  target_pose12.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose12.orientation.x= 2.22693e-05;
+
+  target_pose12.orientation.y = 0.843563;
+
+  target_pose12.orientation.z =4.03589e-05;
+
+  target_pose12.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose12);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(13):
+  target_pose13.position.x =sx ;
+
+  target_pose13.position.y =-0.00449587;
+
+  target_pose13.position.z =sz-i;
+sz=sz-i;
+
+  target_pose13.orientation.x= 2.22693e-05;
+
+  target_pose13.orientation.y = 0.843563;
+
+  target_pose13.orientation.z =4.03589e-05;
+
+  target_pose13.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose13);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+case(14):
+  target_pose14.position.x =sx ;
+
+  target_pose14.position.y =-0.00449587;
+
+  target_pose14.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose14.orientation.x= 2.22693e-05;
+
+  target_pose14.orientation.y = 0.843563;
+
+  target_pose14.orientation.z =4.03589e-05;
+
+  target_pose14.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose14);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(15):
+  target_pose15.position.x =sx;
+
+  target_pose15.position.y =-0.00449587;
+
+  target_pose15.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose15.orientation.x= 2.22693e-05;
+
+  target_pose15.orientation.y = 0.843563;
+
+  target_pose15.orientation.z =4.03589e-05;
+
+  target_pose15.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose15);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(16):
+  target_pose16.position.x =sx ;
+
+  target_pose16.position.y =-0.00449587;
+
+  target_pose16.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose16.orientation.x= 2.22693e-05;
+
+  target_pose16.orientation.y = 0.843563;
+
+  target_pose16.orientation.z =4.03589e-05;
+
+  target_pose16.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose16);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(17):
+  target_pose17.position.x =sx ;
+
+  target_pose17.position.y =-0.00449587;
+
+  target_pose17.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose17.orientation.x= 2.22693e-05;
+
+  target_pose17.orientation.y = 0.843563;
+
+  target_pose17.orientation.z =4.03589e-05;
+
+  target_pose17.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose17);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(18):
+  target_pose18.position.x =sx ;
+
+  target_pose18.position.y =-0.00449587;
+
+  target_pose18.position.z =sz-i;;
+sz=sz-i;
+target_pose18.orientation.x= 2.22693e-05;
+
+  target_pose18.orientation.y = 0.843563;
+
+  target_pose18.orientation.z =4.03589e-05;
+
+  target_pose18.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose18);
+group.asyncMove();
+sleep(0.2);
+break;
+/*while(1)
+{
+group.setMaxAccelerationScalingFactor(0.05);
+group.setMaxVelocityScalingFactor(0.05);
+target_pose2.position.x =0.816431;
+
+  target_pose2.position.y =-0.0192063 ;
+
+  target_pose2.position.z =1.06127+i;
+
+  target_pose2.orientation.x= 2.22693e-05;
+
+  target_pose2.orientation.y = 0.843563;
+
+  target_pose2.orientation.z = 4.03589e-05;
+
+  target_pose2.orientation.w = 0.53703;
+
+
+  group.setPoseTarget(target_pose2);
+
+//group.asyncMove();
+  group.move();
+i=0.001;
+sleep(5);
+
+}
+/*
+std::vector<geometry_msgs::Pose> waypoints;
+
+geometry_msgs::Pose target_pose3 = target_pose2;
+target_pose3.position.x += 0.2;
+target_pose3.position.z += 0.2;
+waypoints.push_back(target_pose3);  // up and out
+group.move();
+target_pose3.position.y -= 0.2;
+waypoints.push_back(target_pose3);
+group.move();
+target_pose3.position.z -= 0.2;
+target_pose3.position.y += 0.2;
+target_pose3.position.x -= 0.2;
+waypoints.push_back(target_pose3);
+group.move();
+moveit_msgs::RobotTrajectory trajectory;
+double fraction = group.computeCartesianPath(waypoints,
+                                             0.01,  // eef_step
+                                             0.0,   // jump_threshold
+                                             trajectory);
+
+ROS_INFO("Visualizing plan 4 (cartesian path) (%.2f%% acheived)",
+      fraction * 100.0);
+/* Sleep to give Rviz time to visualize the plan. */
+//sleep(1.0);
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(19):
+
+  target_pose19.position.x =sx+i;
+  sx=sx+i;
+
+  target_pose19.position.y =-0.00449587;
+
+  target_pose19.position.z =sz-i;
+   sz=sz-i;
+
+  target_pose19.orientation.x= 2.22693e-05;
+
+  target_pose19.orientation.y = 0.843563;
+
+  target_pose19.orientation.z =4.03589e-05;
+
+  target_pose19.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose19);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.05);
+case(20):
+
+  target_pose20.position.x =sx+i ;
+sx=sx+i;
+
+  target_pose20.position.y =-0.00449587;
+
+
+  target_pose20.position.z =sz-i;
+sz=sz-i;
+
+  target_pose20.orientation.x= 2.22693e-05;
+
+  target_pose20.orientation.y = 0.843563;
+
+  target_pose20.orientation.z =4.03589e-05;
+
+  target_pose20.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose20);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(21):
+
+  target_pose21.position.x =sx+i;
+sx=sx+i;
+  target_pose21.position.y =-0.00449587;
+
+  target_pose21.position.z =sz-i;
+sz=sz-i;
+
+  target_pose21.orientation.x= 2.22693e-05;
+
+  target_pose21.orientation.y = 0.843563;
+
+  target_pose21.orientation.z =4.03589e-05;
+
+  target_pose21.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose21);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+case(22):
+
+  target_pose22.position.x =sx+i;
+sx=sx+i;
+
+  target_pose22.position.y =-0.00449587;
+
+  target_pose22.position.z =sz-i;
+sz=sz-i;
+
+  target_pose22.orientation.x= 2.22693e-05;
+
+  target_pose22.orientation.y = 0.843563;
+
+  target_pose22.orientation.z =4.03589e-05;
+
+  target_pose22.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose22);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(23):
+  target_pose23.position.x =sx;
+
+  target_pose23.position.y =-0.00449587;
+
+  target_pose23.position.z =sz-i;
+sz=sz-i;
+
+  target_pose23.orientation.x= 2.22693e-05;
+
+  target_pose23.orientation.y = 0.843563;
+
+  target_pose23.orientation.z =4.03589e-05;
+
+  target_pose23.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose23);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(24):
+  target_pose24.position.x =sx ;
+
+  target_pose24.position.y =-0.00449587;
+
+  target_pose24.position.z =sz-i;
+sz=sz-i;
+
+  target_pose24.orientation.x= 2.22693e-05;
+
+  target_pose24.orientation.y = 0.843563;
+
+  target_pose24.orientation.z =4.03589e-05;
+
+  target_pose24.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose24);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+case(25):
+  target_pose25.position.x =sx;
+
+  target_pose25.position.y =-0.00449587;
+
+  target_pose25.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose25.orientation.x= 2.22693e-05;
+
+  target_pose25.orientation.y = 0.843563;
+
+  target_pose25.orientation.z =4.03589e-05;
+
+  target_pose25.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose25);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(26):
+  target_pose26.position.x =sx ;
+
+  target_pose26.position.y =-0.00449587;
+
+  target_pose26.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose26.orientation.x= 2.22693e-05;
+
+  target_pose26.orientation.y = 0.843563;
+
+  target_pose26.orientation.z =4.03589e-05;
+
+  target_pose26.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose26);
+group.asyncMove();
+sleep(0.2);
+break;
+case(27):
+group.setMaxAccelerationScalingFactor(0.05);
+group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose27.position.x =sx ;
+
+  target_pose27.position.y =-0.00449587;
+
+  target_pose27.position.z =sz-i;
+sz=sz-i;
+
+  target_pose27.orientation.x= 2.22693e-05;
+
+  target_pose27.orientation.y = 0.843563;
+
+  target_pose27.orientation.z =4.03589e-05;
+
+  target_pose27.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose27);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+case(28):
+  target_pose28.position.x =sx;
+
+  target_pose28.position.y =-0.00449587;
+
+  target_pose28.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose28.orientation.x= 2.22693e-05;
+
+  target_pose28.orientation.y = 0.843563;
+
+  target_pose28.orientation.z =4.03589e-05;
+
+  target_pose28.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose28);
+group.asyncMove();
+sleep(0.2);
+break;
+case(29):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose29.position.x =sx ;
+
+  target_pose29.position.y =-0.00449587;
+
+  target_pose29.position.z =sz-i;
+sz=sz-i;
+
+  target_pose29.orientation.x= 2.22693e-05;
+
+  target_pose29.orientation.y = 0.843563;
+
+  target_pose29.orientation.z =4.03589e-05;
+
+  target_pose29.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose29);
+group.asyncMove();
+sleep(0.2);
+break;
+case(30):
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+
+  target_pose30.position.x =sx ;
+
+  target_pose30.position.y =-0.00449587;
+
+  target_pose30.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose30.orientation.x= 2.22693e-05;
+
+  target_pose30.orientation.y = 0.843563;
+
+  target_pose30.orientation.z =4.03589e-05;
+
+  target_pose30.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose30);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(31):
+  target_pose31.position.x =sx;
+
+  target_pose31.position.y =-0.00449587;
+
+  target_pose31.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose31.orientation.x= 2.22693e-05;
+
+  target_pose31.orientation.y = 0.843563;
+
+  target_pose31.orientation.z =4.03589e-05;
+
+  target_pose31.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose31);
+group.asyncMove();
+sleep(0.2);
+break;
+case(32):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose32.position.x =sx ;
+
+  target_pose32.position.y =-0.00449587;
+
+  target_pose32.position.z =sz-i;;
+sz=sz+i;
+
+  target_pose32.orientation.x= 2.22693e-05;
+
+  target_pose32.orientation.y = 0.843563;
+
+  target_pose32.orientation.z =4.03589e-05;
+
+  target_pose32.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose32);
+group.asyncMove();
+sleep(0.2);
+break;
+case(33):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose33.position.x =sx ;
+
+  target_pose33.position.y =-0.00449587;
+
+  target_pose33.position.z =sz-i;;
+sz=sz+i;
+
+  target_pose33.orientation.x= 2.22693e-05;
+
+  target_pose33.orientation.y = 0.843563;
+
+  target_pose33.orientation.z =4.03589e-05;
+
+  target_pose33.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose33);
+group.asyncMove();
+sleep(0.2);
+break;
+case(34):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose34.position.x =sx ;
+
+  target_pose34.position.y =-0.00449587;
+
+  target_pose34.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose34.orientation.x= 2.22693e-05;
+
+  target_pose34.orientation.y = 0.843563;
+
+  target_pose34.orientation.z =4.03589e-05;
+
+  target_pose34.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose34);
+group.asyncMove();
+sleep(0.2);
+break;
+case(35):
+ target_pose35.position.x =sx ;
+
+  target_pose35.position.y =-0.00449587;
+
+  target_pose35.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose35.orientation.x= 2.22693e-05;
+
+  target_pose35.orientation.y = 0.843563;
+
+  target_pose35.orientation.z =4.03589e-05;
+
+  target_pose35.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose35);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(36):
+  target_pose36.position.x =sx ;
+
+  target_pose36.position.y =-0.00449587;
+
+  target_pose36.position.z =sz-i;
+sz=sz-i;
+
+  target_pose36.orientation.x= 2.22693e-05;
+
+  target_pose36.orientation.y = 0.843563;
+
+  target_pose36.orientation.z =4.03589e-05;
+
+  target_pose36.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose36);
+group.asyncMove();
+sleep(0.2);
+break;
+case(37):
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+
+  target_pose37.position.x =sx;
+
+  target_pose37.position.y =-0.00449587;
+
+  target_pose37.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose37.orientation.x= 2.22693e-05;
+
+  target_pose37.orientation.y = 0.843563;
+
+  target_pose37.orientation.z =4.03589e-05;
+
+  target_pose37.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose37);
+group.asyncMove();
+sleep(0.2);
+break;
+case(38):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose38.position.x =sx ;
+
+  target_pose38.position.y =-0.00449587;
+
+  target_pose38.position.z =sz-i;
+sz=sz-i;
+
+  target_pose38.orientation.x= 2.22693e-05;
+
+  target_pose38.orientation.y = 0.843563;
+
+  target_pose38.orientation.z =4.03589e-05;
+
+  target_pose38.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose38);
+group.asyncMove();
+sleep(0.2);
+break;
+case(39):
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+
+  target_pose39.position.x =sx ;
+
+  target_pose39.position.y =-0.00449587;
+
+  target_pose39.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose39.orientation.x= 2.22693e-05;
+
+  target_pose39.orientation.y = 0.843563;
+
+  target_pose39.orientation.z =4.03589e-05;
+
+  target_pose39.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose39);
+group.asyncMove();
+sleep(0.2);
+break;
+case(40):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose40.position.x =sx;
+
+  target_pose40.position.y =-0.00449587;
+
+  target_pose40.position.z =sz-i;;
+sz=sz-i;
+target_pose40.orientation.x= 2.22693e-05;
+
+  target_pose40.orientation.y = 0.843563;
+
+  target_pose40.orientation.z =4.03589e-05;
+
+  target_pose40.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose40);
+group.asyncMove();
+sleep(0.2);
+break;
+case(41):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose41.position.x =sx ;
+
+  target_pose41.position.y =-0.00449587;
+
+  target_pose41.position.z =sz-i;;
+sz=sz+i;
+
+  target_pose41.orientation.x= 2.22693e-05;
+
+  target_pose41.orientation.y = 0.843563;
+
+  target_pose41.orientation.z =4.03589e-05;
+
+  target_pose41.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose41);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(42):
+  target_pose42.position.x =sx ;
+
+  target_pose42.position.y =-0.00449587;
+
+  target_pose42.position.z =sz-i;;
+sz=sz+i;
+
+  target_pose42.orientation.x= 2.22693e-05;
+
+  target_pose42.orientation.y = 0.843563;
+
+  target_pose42.orientation.z =4.03589e-05;
+
+  target_pose42.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose42);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(43):
+  target_pose43.position.x =sx ;
+
+  target_pose43.position.y =-0.00449587;
+
+  target_pose43.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose43.orientation.x= 2.22693e-05;
+
+  target_pose43.orientation.y = 0.843563;
+
+  target_pose43.orientation.z =4.03589e-05;
+
+  target_pose43.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose43);
+group.asyncMove();
+sleep(0.2);
+break;
+/*while(1)
+{
+group.setMaxAccelerationScalingFactor(0.05);
+group.setMaxVelocityScalingFactor(0.05);
+target_pose2.position.x =0.816431;
+
+  target_pose2.position.y =-0.0192063 ;
+
+  target_pose2.position.z =1.06127+i;
+
+  target_pose2.orientation.x= 2.22693e-05;
+
+  target_pose2.orientation.y = 0.843563;
+
+  target_pose2.orientation.z = 4.03589e-05;
+
+  target_pose2.orientation.w = 0.53703;
+
+
+  group.setPoseTarget(target_pose2);
+
+//group.asyncMove();
+  group.move();
+i=0.001;
+sleep(5);
+
+}
+/*
+std::vector<geometry_msgs::Pose> waypoints;
+
+geometry_msgs::Pose target_pose3 = target_pose2;
+target_pose3.position.x += 0.2;
+target_pose3.position.z += 0.2;
+waypoints.push_back(target_pose3);  // up and out
+group.move();
+target_pose3.position.y -= 0.2;
+waypoints.push_back(target_pose3);
+group.move();
+target_pose3.position.z -= 0.2;
+target_pose3.position.y += 0.2;
+target_pose3.position.x -= 0.2;
+waypoints.push_back(target_pose3);
+group.move();
+moveit_msgs::RobotTrajectory trajectory;
+double fraction = group.computeCartesianPath(waypoints,
+                                             0.01,  // eef_step
+                                             0.0,   // jump_threshold
+                                             trajectory);
+
+ROS_INFO("Visualizing plan 4 (cartesian path) (%.2f%% acheived)",
+      fraction * 100.0);
+/* Sleep to give Rviz time to visualize the plan. */
+//sleep(1.0);
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(44):
+  target_pose44.position.x =sx;
+ // sx=sx+i;
+  target_pose44.position.y =-0.00449587;
+
+  target_pose44.position.z =sz-i;
+   sz=sz-i;
+
+  target_pose44.orientation.x= 2.22693e-05;
+
+  target_pose44.orientation.y = 0.843563;
+
+  target_pose44.orientation.z =4.03589e-05;
+
+  target_pose44.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose44);
+group.asyncMove();
+sleep(0.2);
+break;
+case(45):
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose45.position.x =sx+i ;
+sx=sx+i;
+
+  target_pose45.position.y =-0.00449587;
+
+  target_pose45.position.z =sz-i;
+sz=sz-i;
+target_pose45.orientation.x= 2.22693e-05;
+
+  target_pose45.orientation.y = 0.843563;
+
+  target_pose45.orientation.z =4.03589e-05;
+
+  target_pose45.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose45);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(46):
+
+  target_pose46.position.x =sx+i;
+sx=sx+i;
+  target_pose46.position.y =-0.00449587;
+
+  target_pose46.position.z =sz-i;
+sz=sz-i;
+ target_pose46.orientation.x= 2.22693e-05;
+
+  target_pose46.orientation.y = 0.843563;
+
+  target_pose46.orientation.z =4.03589e-05;
+
+  target_pose46.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose46);
+group.asyncMove();
+sleep(0.2);
+break;
+case(47):
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+
+  target_pose47.position.x =sx+i;
+sx=sx+i;
+
+  target_pose47.position.y =-0.00449587;
+
+  target_pose47.position.z =sz-i;
+sz=sz-i;
+
+  target_pose47.orientation.x= 2.22693e-05;
+
+  target_pose47.orientation.y = 0.843563;
+
+  target_pose47.orientation.z =4.03589e-05;
+
+  target_pose47.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose47);
+group.asyncMove();
+sleep(0.2);
+break;
+case(48):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose48.position.x =sx;
+
+  target_pose48.position.y =-0.00449587;
+
+  target_pose48.position.z =sz-i;
+sz=sz-i;
+
+  target_pose48.orientation.x= 2.22693e-05;
+
+  target_pose48.orientation.y = 0.843563;
+
+  target_pose48.orientation.z =4.03589e-05;
+
+  target_pose48.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose48);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+case(49):
+  target_pose49.position.x =sx ;
+
+  target_pose49.position.y =-0.00449587;
+
+  target_pose49.position.z =sz-i;
+sz=sz-i;
+
+  target_pose49.orientation.x= 2.22693e-05;
+
+  target_pose49.orientation.y = 0.843563;
+
+  target_pose49.orientation.z =4.03589e-05;
+
+  target_pose49.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose49);
+group.asyncMove();
+sleep(0.2);
+break;
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+case(50):
+  target_pose50.position.x =sx;
+
+  target_pose50.position.y =-0.00449587;
+
+  target_pose50.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose50.orientation.x= 2.22693e-05;
+
+  target_pose50.orientation.y = 0.843563;
+
+  target_pose50.orientation.z =4.03589e-05;
+
+  target_pose50.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose50);
+group.asyncMove();
+sleep(0.2);
+break;
+case(51):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose51.position.x =sx ;
+
+  target_pose51.position.y =-0.00449587;
+
+  target_pose51.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose51.orientation.x= 2.22693e-05;
+
+  target_pose51.orientation.y = 0.843563;
+
+  target_pose51.orientation.z =4.03589e-05;
+
+  target_pose51.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose51);
+group.asyncMove();
+sleep(0.2);
+break;
+case(52):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose52.position.x =sx ;
+
+  target_pose52.position.y =-0.00449587;
+
+  target_pose52.position.z =sz-i;
+sz=sz-i;
+
+  target_pose52.orientation.x= 2.22693e-05;
+
+  target_pose52.orientation.y = 0.843563;
+
+  target_pose52.orientation.z =4.03589e-05;
+
+  target_pose52.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose52);
+group.asyncMove();
+sleep(0.2);
+break;
+case(53):
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+
+  target_pose53.position.x =sx;
+
+  target_pose53.position.y =-0.00449587;
+
+  target_pose53.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose53.orientation.x= 2.22693e-05;
+
+  target_pose53.orientation.y = 0.843563;
+
+  target_pose53.orientation.z =4.03589e-05;
+
+  target_pose53.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose53);
+group.asyncMove();
+sleep(0.2);
+break;
+case(54):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose54.position.x =sx ;
+
+  target_pose54.position.y =-0.00449587;
+
+  target_pose54.position.z =sz-i;
+sz=sz-i;
+
+  target_pose54.orientation.x= 2.22693e-05;
+
+  target_pose54.orientation.y = 0.843563;
+
+  target_pose54.orientation.z =4.03589e-05;
+
+  target_pose54.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose54);
+group.asyncMove();
+sleep(0.2);
+break;
+case(55):
+//group.setMaxAccelerationScalingFactor(0.005);
+//group.setMaxVelocityScalingFactor(0.005);
+
+  target_pose55.position.x =sx ;
+
+  target_pose55.position.y =-0.00449587;
+
+  target_pose55.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose55.orientation.x= 2.22693e-05;
+
+  target_pose55.orientation.y = 0.843563;
+
+  target_pose55.orientation.z =4.03589e-05;
+
+  target_pose55.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose55);
+group.asyncMove();
+sleep(0.2);
+break;
+case(56):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose56.position.x =sx;
+
+  target_pose56.position.y =-0.00449587;
+
+  target_pose56.position.z =sz-i;;
+sz=sz-i;
+
+  target_pose56.orientation.x= 2.22693e-05;
+
+  target_pose56.orientation.y = 0.843563;
+
+  target_pose56.orientation.z =4.03589e-05;
+
+  target_pose56.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose56);
+group.asyncMove();
+sleep(0.2);
+break;
+case(57):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose57.position.x =sx ;
+
+  target_pose57.position.y =-0.00449587;
+
+  target_pose57.position.z =sz-i;
+sz=sz+i;
+
+  target_pose57.orientation.x= 2.22693e-05;
+
+  target_pose57.orientation.y = 0.843563;
+
+  target_pose57.orientation.z =4.03589e-05;
+
+  target_pose57.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose57);
+group.asyncMove();
+sleep(0.2);
+break;
+case(58):
+group.setMaxAccelerationScalingFactor(0.05);
+group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose58.position.x =sx ;
+
+  target_pose58.position.y =-0.00449587;
+
+  target_pose58.position.z =sz-i;
+sz=sz+i;
+
+ target_pose58.orientation.x= 2.22693e-05;
+
+  target_pose58.orientation.y = 0.843563;
+
+  target_pose58.orientation.z =4.03589e-05;
+
+  target_pose58.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose58);
+group.asyncMove();
+sleep(0.2);
+break;
+case(59):
+//group.setMaxAccelerationScalingFactor(0.05);
+//group.setMaxVelocityScalingFactor(0.05);
+
+  target_pose59.position.x =sx ;
+
+  target_pose59.position.y =-0.00449587;
+
+  target_pose59.position.z =sz-i;;
+sz=sz-i;
+  target_pose59.orientation.x= 2.22693e-05;
+
+  target_pose59.orientation.y = 0.843563;
+
+  target_pose59.orientation.z =4.03589e-05;
+
+  target_pose59.orientation.w =  0.53703;
+
+  group.setPoseTarget(target_pose59);
+group.asyncMove();
+sleep(0.2);
+break;
+
+default:
+
+break;
+}
+c=c+j;
+if(c>58)
+{
+j=-1;
+c=59;
+}
+ if(c<2)
+{
+j=1;
+c=1;
+}
+}
+else
+{
+//}{
+group.stop();
+}
+ ros::spin();
+//}
+//sleep(0.1);*/
+
+  //return 0;
+//}
+}
+int main( int argc, char** argv )
+   {
+    ros::init(argc, argv, "basic");
+     ros::NodeHandle m;
+     ros::Rate r(1);
+
+ /*message_filters::Subscriber<sensor_msgs::Range> sub1(m, "range_data1", 1);
+     message_filters::Subscriber<sensor_msgs::Range> sub2(m, "range_data2", 1);
+    // TimeSynchronizer<Range, Range> sync(sub1, sub2, 10);
+typedef sync_policies::ExactTime<Range, Range> MySyncPolicy;
+ Synchronizer<MySyncPolicy> sync(MySyncPolicy(10), sub1, sub2);
+     sync.registerCallback(boost::bind(&callback, _1, _2));*/
+
+   //ROS_INFO("I heard: [%f]", range)
+ros::Subscriber sub = m.subscribe("pir_data", 1000,rangeCallback);   
+//ros::Subscriber sub1 = m.subscribe("range_data1", 9600,rangeCallback);  
+ros::spin();
+//ROS_INFO("I heard: [%f]", range);
+return 0;
+//r.sleep();
+}  

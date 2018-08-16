@@ -1,0 +1,9 @@
+def one():
+  global b
+  print "one"
+  b=1
+
+if __name__ == '__main__':
+   global b=0
+   a= one
+   print b

@@ -1,0 +1,129 @@
+#!/usr/bin/env python
+
+import rospy
+import serial
+import string
+import time
+import bluetooth
+from std_msgs.msg import Float32
+import signal
+import sys
+
+
+rospy.init_node('ros_bluetooth_driver',anonymous=True)
+rospy.loginfo("Staring ROS-Bluetooth Driver node")
+pub = rospy.Publisher('range_data', Float32, queue_size=9600)
+#ROS - Bluetooth serial driver
+#Publishes bluetooth serial values to ROS Topics
+
+#This function publish ypr into an Vector3 message
+
+def publish(value_list):
+	global orient
+	global pub
+	
+	x = value_list
+	print x
+
+	#pub.publish(x)
+
+	#print value_list
+	#orient.x
+	
+
+def decode_string(string):
+	'''This function will decode the buffer data and
+	convert into each string which contain ypr values
+	param: string, string buffer
+	'''
+
+	start_flag = 0
+
+	final_string = ""
+
+	string_list = []
+
+	decode_list = list(string)
+	string_len = len(decode_list)	
+
+	for i in range(0,string_len):
+		#Start reading when y is found
+		start_flag = start_flag*2 
+		if(decode_list[i] == 's'):
+			start_flag = 1
+
+		#Read until a carriage return occurs
+		if(start_flag > 1):
+			if(decode_list[i] != 'e'):
+				final_string = final_string + decode_list[i]
+			else:
+				start_flag = 0
+		#If it is a new line, append to a list
+		if(decode_list[i] == "\n"):
+			string_list.append(final_string)
+
+			final_string = ""		
+	return string_list
+
+
+def decode_line(list_string):
+	''' This will decode each string and make it as components
+
+	param: A line of string
+	'''
+	#This will print each line with its components
+	
+	#Here we are publishing topics
+	value_list = 0
+	for item in list_string:
+        	value_list = item.split()
+		if(not(len(value_list) < 3)):
+			#print value_list
+			publish(value_list)
+
+
+
+def connect():
+    while(True):    
+        try:
+            bluetooth_serial_handle = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+            bluetooth_serial_handle.connect(('98:D3:32:30:62:EC', 1))
+            break;
+        except bluetooth.btcommon.BluetoothError as error:
+            bluetooth_serial_handle.close()
+	    rospy.logwarn("Unable to connect, Retrying in 10s...")
+            #print "Could not connect: ", error, "; Retrying in 10s..."
+            time.sleep(10)
+    return bluetooth_serial_handle;
+
+bluetooth_serial_handle = connect()
+
+
+def quit_code(signum, frame):
+	sys.exit(1)
+
+signal.signal(signal.SIGINT, quit_code)
+
+
+
+while(True):
+    try:
+        receive_data = bluetooth_serial_handle.recv(300)
+	#list_rec = map(str, receive_data.strip().split('\r\n'))
+	list_rec = receive_data
+
+	list_string = decode_string(list_rec)
+	publish(list_string)
+	
+
+	time.sleep(0.2)
+
+    except bluetooth.btcommon.BluetoothError as error:
+        #print "Caught BluetoothError: ", error
+	rospy.logerr("Caught Bluetooth Error; error")
+        time.sleep(5)
+        bluetooth_serial_handle = connect()
+        pass
+
+
+bluetooth_serial_handle.close()

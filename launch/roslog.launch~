@@ -1,0 +1,5 @@
+<launch>
+<node name="talker" pkg="using_markers" type="talker.py" output="xterm">
+
+</node>
+</launch>
